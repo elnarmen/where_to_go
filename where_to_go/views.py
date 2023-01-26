@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
 
-def home(request):
+def show_map(request):
     return render(request, 'index.html')
