@@ -25,7 +25,7 @@ def get_place_details(place):
 
 def show_map(request):
 
-    places_query_set = Place.objects.all()
+    places_query_set = Place.objects.prefetch_related('images').all()
 
     places = {
       "type": "FeatureCollection",

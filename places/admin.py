@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from adminsortable2.admin import SortableStackedInline, SortableAdminBase
-
 from .models import Place, Image
 
 
@@ -29,6 +28,4 @@ class SortablePlaceAdmin(SortableAdminBase, admin.ModelAdmin):
     ]
 
 
-@admin.register(Image)
-class ImageAdmin(admin.ModelAdmin):
-    pass
+admin.site.register(Image)

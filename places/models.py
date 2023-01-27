@@ -13,6 +13,10 @@ class Place(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = 'Локация'
+        verbose_name_plural = 'Локации'
+
 
 class Image(models.Model):
 
@@ -20,9 +24,9 @@ class Image(models.Model):
         Place,
         on_delete=models.CASCADE,
         related_name='images',
-        verbose_name='Компания'
+        verbose_name='Локация'
     )
-    title = models.CharField(max_length=200, verbose_name='Компания')
+    title = models.CharField(max_length=200, verbose_name='Название')
     image = models.ImageField(verbose_name='Картинка')
     order = models.PositiveIntegerField(default=0)
 
