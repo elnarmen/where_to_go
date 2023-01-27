@@ -38,7 +38,7 @@
       width: 100px;
     }
   </style>
-  {{ json|json_script:"places-geojson" }}
+  {{ places|json_script:"places-geojson" }}
   <script id="app-template" type="text/template">
     <div v-bind:class="{'sidebar-content': 1, 'bg-white': selectedPlace, 'bg-secondary': !selectedPlace}">
       <div v-if="promptVisible" class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
@@ -128,7 +128,7 @@
       position: 'bottomleft',
       content: `
         <label>
-            <input name="debug" type="checkbox" ${log.getLevel()<=1 && 'checked'}/>
+            <input name='debug' type='checkbox' ${log.getLevel()<=1 && 'checked'}/>
             Отладка
         </label>`,
       style: {
@@ -163,7 +163,7 @@
 
     L.geoJSON(places, {
         pointToLayer: function(geoJsonPoint, latlng) {
-          if (geoJsonPoint.geometry.type != "Point"){
+          if (geoJsonPoint.geometry.type != 'Point'){
             return
           }
 
@@ -278,7 +278,6 @@
         }
       }
     }
-
   </script>
 
 </body>
