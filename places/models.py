@@ -14,6 +14,7 @@ class Place(models.Model):
 
 
 class Image(models.Model):
+
     place = models.ForeignKey(
         Place,
         on_delete=models.CASCADE,
@@ -22,6 +23,7 @@ class Image(models.Model):
     )
     title = models.CharField(max_length=200, verbose_name='Компания')
     image = models.ImageField(verbose_name='Картинка')
+    order = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -29,7 +31,7 @@ class Image(models.Model):
     class Meta:
         verbose_name = 'Фотография'
         verbose_name_plural = 'Фотографии'
-
+        ordering = ['order']
 
 
 
