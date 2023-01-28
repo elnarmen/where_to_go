@@ -1,11 +1,10 @@
 import os
-
-from django.core.management.base import BaseCommand
 import json
 import requests
 from io import BytesIO
 from places.models import Place, Image
 from django.conf import settings
+from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
