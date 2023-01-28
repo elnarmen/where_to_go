@@ -19,9 +19,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['elnarmengelbaev.pythonanywhere.com']
 
 
 # Application definition
@@ -119,7 +119,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
-STATIC_ROOT = '/home/elnar/projects/where_to_go/where_to_go/assets/'
+STATIC_ROOT = BASE_DIR / 'assets'
 
 MEDIA_URL = '/media/'
 
