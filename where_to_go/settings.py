@@ -16,13 +16,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY', default='REPLACE_ME')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default='elnarmengelbaev.pythonanywhere.com')
-
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default='127.0.0.1')
 
 # Application definition
 
@@ -124,5 +123,7 @@ STATIC_ROOT = BASE_DIR / 'assets'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
+
+LOAD_ROOT = BASE_DIR / 'json_files'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -26,17 +26,14 @@ class Image(models.Model):
         related_name='images',
         verbose_name='Локация'
     )
-    title = models.CharField(max_length=200, verbose_name='Название')
     image = models.ImageField(verbose_name='Картинка')
     order = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return self.title
+        return f'{self.order} {self.place.title}'
 
     class Meta:
         verbose_name = 'Фотография'
         verbose_name_plural = 'Фотографии'
         ordering = ['order']
-
-
-
+        unique_together = ['place', 'order']
