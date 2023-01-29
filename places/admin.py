@@ -7,7 +7,7 @@ from .models import Place, Image
 
 class ImageStackedInline(SortableStackedInline):
     model = Image
-    fields = ['image', 'get_image_preview',]
+    fields = ['image', 'get_image_preview', ]
     readonly_fields = ['get_image_preview']
 
     def get_image_preview(self, obj):

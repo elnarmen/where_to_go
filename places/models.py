@@ -9,7 +9,6 @@ class Place(models.Model):
     longitude = models.FloatField('Долгота')
     latitude = models.FloatField('Широта')
 
-
     def __str__(self):
         return self.title
 
@@ -19,7 +18,6 @@ class Place(models.Model):
 
 
 class Image(models.Model):
-
     place = models.ForeignKey(
         Place,
         on_delete=models.CASCADE,
