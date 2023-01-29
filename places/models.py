@@ -9,12 +9,14 @@ class Place(models.Model):
     longitude = models.FloatField('Долгота')
     latitude = models.FloatField('Широта')
 
-    def __str__(self):
-        return self.title
-
     class Meta:
         verbose_name = 'Локация'
         verbose_name_plural = 'Локации'
+
+    def __str__(self):
+        return self.title
+
+
 
 
 class Image(models.Model):
@@ -27,11 +29,13 @@ class Image(models.Model):
     image = models.ImageField(verbose_name='Картинка')
     order = models.PositiveIntegerField(default=0)
 
-    def __str__(self):
-        return f'{self.order} {self.place.title}'
-
     class Meta:
         verbose_name = 'Фотография'
         verbose_name_plural = 'Фотографии'
         ordering = ['order']
         unique_together = ['place', 'order']
+
+    def __str__(self):
+        return f'{self.order} {self.place.title}'
+
+
