@@ -10,6 +10,9 @@ from django.core.management.base import BaseCommand
 class Command(BaseCommand):
     help = 'Loads data from a JSON file into the database'
 
+    def add_arguments(self, parser):
+        parser.add_argument('json_url', type=str, help='The URL of the JSON file to load')
+
     @staticmethod
     def upload_images(place, urls):
         for num, url in enumerate(urls):
@@ -24,19 +27,18 @@ class Command(BaseCommand):
             image_obj.image.save(image_name, image, save=True)
 
     def handle(self, *args, **options):
-        os.chdir(settings.LOAD_ROOT)
-        for file in os.listdir("."):
-            with open(file, 'r', encoding='utf-8') as file:
-                serialized_json = json.load(file)
+        json_url = options['json_url']
+        response = requests.get(json_url)
+        response.raise_for_status()
+        decoded_json = response.json()
+        place = Place.objects.create(
+            title=decoded_json['title'],
+            description_short=decoded_json['description_short'],
+            description_long=decoded_json['description_long'],
+            longitude=decoded_json['coordinates']['lng'],
+            latitude=decoded_json['coordinates']['lat']
+        )
 
-            place = Place.objects.create(
-                title=serialized_json['title'],
-                description_short=serialized_json['description_short'],
-                description_long=serialized_json['description_long'],
-                longitude=serialized_json['coordinates']['lng'],
-                latitude=serialized_json['coordinates']['lat']
-            )
+        self.upload_images(place, decoded_json['imgs'])
 
-            self.upload_images(place, serialized_json['imgs'])
-
-            self.stdout.write(self.style.SUCCESS('Data loaded successfully'))
+        self.stdout.write(self.style.SUCCESS('Data loaded successfully'))
