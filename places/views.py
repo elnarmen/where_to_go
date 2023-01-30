@@ -24,7 +24,7 @@ def get_place_details(place):
 
 def show_map(request):
 
-    places_query_set = Place.objects.prefetch_related('images').all()
+    places_query_set = Place.objects.all()
 
     places = {
       "type": "FeatureCollection",
@@ -60,6 +60,5 @@ def show_place(request, place_id):
 
     return JsonResponse(
         place_details,
-        safe=False,
         json_dumps_params={'ensure_ascii': False, 'indent': 4}
     )
