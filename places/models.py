@@ -17,8 +17,6 @@ class Place(models.Model):
         return self.title
 
 
-
-
 class Image(models.Model):
     place = models.ForeignKey(
         Place,
@@ -33,7 +31,6 @@ class Image(models.Model):
         verbose_name = 'Фотография'
         verbose_name_plural = 'Фотографии'
         ordering = ['order']
-        unique_together = ['place', 'order']
 
     def __str__(self):
         return f'{self.order} {self.place.title}'
