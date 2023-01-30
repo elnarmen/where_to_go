@@ -31,12 +31,14 @@ class Command(BaseCommand):
         response = requests.get(json_url)
         response.raise_for_status()
         decoded_json = response.json()
-        place = Place.objects.create(
+        place, created = Place.objects.update_or_create(
             title=decoded_json['title'],
-            description_short=decoded_json['description_short'],
-            description_long=decoded_json['description_long'],
-            longitude=decoded_json['coordinates']['lng'],
-            latitude=decoded_json['coordinates']['lat']
+            defaults={
+                'description_short': decoded_json['description_short'],
+                'description_long': decoded_json['description_long'],
+                'longitude': decoded_json['coordinates']['lng'],
+                'latitude': decoded_json['coordinates']['lat']
+            }
         )
 
         self.upload_images(place, decoded_json['imgs'])
