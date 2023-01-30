@@ -15,6 +15,8 @@ class Command(BaseCommand):
 
     @staticmethod
     def upload_images(place, urls):
+        if not urls:
+            return
         for num, url in enumerate(urls):
             response = requests.get(url)
             response.raise_for_status()
@@ -34,13 +36,11 @@ class Command(BaseCommand):
         place, created = Place.objects.update_or_create(
             title=decoded_json['title'],
             defaults={
-                'description_short': decoded_json['description_short'],
-                'description_long': decoded_json['description_long'],
+                'description_short': decoded_json.get('description_short', ''),
+                'description_long': decoded_json.get('description_long', ''),
                 'longitude': decoded_json['coordinates']['lng'],
                 'latitude': decoded_json['coordinates']['lat']
             }
         )
-
-        self.upload_images(place, decoded_json['imgs'])
-
+        self.upload_images(place, decoded_json.get('imgs'))
         self.stdout.write(self.style.SUCCESS('Data loaded successfully'))
