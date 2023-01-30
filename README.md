@@ -8,7 +8,7 @@
 
 [https://elnarmengelbaev.pythonanywhere.com/](https://elnarmengelbaev.pythonanywhere.com/)
 
-# Нвстройка переменных окружения
+# Настройка переменных окружения
 Создайте файл `.env` рядом с файлом `manage.py`
 
 Придумайте или сгенерируйте секретный ключ и сохраните его в `.env`:
