@@ -10,8 +10,8 @@ class ImageStackedInline(SortableStackedInline):
     fields = ['image', 'get_image_preview', ]
     readonly_fields = ['get_image_preview']
 
-    def get_image_preview(self, place_obj):
-        return format_html('<img src={} height="200"', place_obj.image.url)
+    def get_image_preview(self, img_obj):
+        return format_html('<img src={} height="200"', img_obj.image.url)
 
 
 @admin.register(Place)
