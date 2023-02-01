@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from django.urls import path, include
 from places import views
@@ -11,4 +10,4 @@ urlpatterns = [
     path('', views.show_map),
     path('places/<int:place_id>/', views.show_place, name='show_place'),
     path('tinymce/', include('tinymce.urls')),
-              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

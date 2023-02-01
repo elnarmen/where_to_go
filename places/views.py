@@ -24,22 +24,22 @@ def show_map(request):
     places_query_set = Place.objects.all()
 
     places = {
-      "type": "FeatureCollection",
-      "features": []
+      'type': 'FeatureCollection',
+      'features': []
     }
 
     for place in places_query_set:
-        places["features"].append(
+        places['features'].append(
             {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [place.longitude, place.latitude]
+                'type': 'Feature',
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [place.longitude, place.latitude]
                 },
-                "properties": {
-                    "title": place.title,
-                    "placeId": place.id,
-                    "detailsUrl": reverse(
+                'properties': {
+                    'title': place.title,
+                    'placeId': place.id,
+                    'detailsUrl': reverse(
                         'show_place', kwargs={'place_id': place.pk}
                     )
                 }
